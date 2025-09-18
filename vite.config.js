@@ -17,7 +17,13 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    host: true
+    host: true,
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      'it-g8e6.onrender.com',
+      '.onrender.com'
+    ]
   },
   preview: {
     port: 3001,
