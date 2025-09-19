@@ -588,6 +588,10 @@ document.addEventListener('click', (e) => {
   .search-input {
     width: 150px;
   }
+  
+  .nav-brand h1 {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -630,7 +634,7 @@ document.addEventListener('click', (e) => {
   }
   
   .nav-brand h1 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .nav-menu {
@@ -643,6 +647,24 @@ document.addEventListener('click', (e) => {
   
   .nav-actions {
     gap: 0.5rem;
+  }
+  
+  .notifications-dropdown {
+    width: 280px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-brand h1 {
+    font-size: 0.8rem;
+  }
+  
+  .nav-link {
+    padding: 0.3rem;
+  }
+  
+  .nav-actions {
+    gap: 0.3rem;
   }
 }
 </style>

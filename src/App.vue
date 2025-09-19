@@ -23,6 +23,9 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
   color: #2c3e50;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .app {
@@ -35,6 +38,8 @@ body {
   flex: 1;
   padding-top: 70px;
   min-height: calc(100vh - 70px);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Estilos globales para componentes */

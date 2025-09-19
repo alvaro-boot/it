@@ -144,6 +144,9 @@
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  line-height: 1.2;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .welcome-text {
@@ -306,8 +309,13 @@
     padding: 1rem;
   }
   
+  .welcome-section {
+    padding: 1.5rem;
+  }
+  
   .welcome-section h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
   }
   
   .welcome-text {
@@ -325,6 +333,21 @@
   .overview-card {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-section {
+    padding: 1rem;
+  }
+  
+  .welcome-section h1 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+  
+  .welcome-text {
+    font-size: 0.9rem;
   }
 }
 </style>
