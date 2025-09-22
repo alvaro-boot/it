@@ -36,6 +36,21 @@
       </div>
     </div>
 
+    <!-- Accesos rápidos a Gestión Humana -->
+    <div class="gh-shortcuts">
+      <h2>Accesos a Gestión Humana</h2>
+      <div class="gh-actions">
+        <button class="gh-btn" @click="goToGH('/empleados')">
+          <span class="gh-icon">👥</span>
+          Ir a Empleados
+        </button>
+        <button class="gh-btn secondary" @click="goToGH('/nomina')">
+          <span class="gh-icon">💰</span>
+          Ir a Nómina
+        </button>
+      </div>
+    </div>
+
     <div class="system-overview">
       <h2>Resumen del Sistema</h2>
       <div class="overview-grid">
@@ -121,7 +136,9 @@
 </template>
 
 <script setup>
-// No necesitamos lógica adicional para esta vista
+function goToGH(path = '/') {
+  window.parent?.postMessage({ type: 'navigate', module: 'gestion-humana', path }, '*')
+}
 </script>
 
 <style scoped>
@@ -159,6 +176,43 @@
 .quick-actions, .system-overview, .recent-activity {
   margin-bottom: 3rem;
 }
+
+.gh-shortcuts {
+  margin-bottom: 3rem;
+}
+
+.gh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(124,58,237,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(124,58,237,0.3);
+}
+
+.gh-btn.secondary {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.25);
+}
+
+.gh-icon { font-size: 14px; }
 
 .quick-actions h2, .system-overview h2, .recent-activity h2 {
   color: #2c3e50;
