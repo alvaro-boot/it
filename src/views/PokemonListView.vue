@@ -15,7 +15,7 @@
           :pokemon-name="p.name"
           :image-url="p.image"
           :types="p.types"
-          @click="goDetail(p.name)"
+          @click="goDetail(p.id)"
         />
       </div>
 
@@ -41,13 +41,13 @@ const loading = ref(false)
 const hasMore = ref(true)
 const search = ref('')
 
-const goDetail = (name) => {
-  router.push({ name: 'pokemon-detail', params: { name } })
+const goDetail = (id) => {
+  router.push({ name: 'pokemon-detail', params: { id } })
 }
 
 const goSearch = () => {
   if (!search.value) return
-  goDetail(search.value.toLowerCase().trim())
+  navigateSearch(search.value)
 }
 
 async function fetchList() {
@@ -63,6 +63,7 @@ async function fetchList() {
         const r = await fetch(item.url)
         const d = await r.json()
         return {
+          id: d.id,
           name: d.name,
           image: d.sprites.other['official-artwork'].front_default || d.sprites.front_default,
           types: d.types.map(t => t.type.name)
@@ -89,6 +90,21 @@ function prevPage() {
 
 watch(page, fetchList)
 onMounted(fetchList)
+
+async function navigateSearch(q) {
+  const query = q.toString().trim().toLowerCase()
+  if (!query) return
+  // if numeric, navigate directly
+  if (/^\d+$/.test(query)) {
+    return goDetail(Number(query))
+  }
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`)
+    if (!res.ok) return
+    const d = await res.json()
+    goDetail(d.id)
+  } catch {}
+}
 </script>
 
 <style scoped>

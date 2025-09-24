@@ -42,12 +42,12 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const name = computed(() => route.params.name)
+const id = computed(() => route.params.id)
 const pokemon = ref(null)
 const loading = ref(false)
 const error = ref('')
 
-const title = computed(() => pokemon.value ? pokemon.value.name.charAt(0).toUpperCase() + pokemon.value.name.slice(1) : 'Pokémon')
+const title = computed(() => pokemon.value ? `#${pokemon.value.id} ${pokemon.value.name.charAt(0).toUpperCase() + pokemon.value.name.slice(1)}` : 'Pokémon')
 const imageUrl = computed(() => pokemon.value?.sprites?.other?.['official-artwork']?.front_default || pokemon.value?.sprites?.front_default)
 const types = computed(() => pokemon.value?.types?.map(t => t.type.name) || [])
 
@@ -55,7 +55,7 @@ async function fetchDetail() {
   loading.value = true
   error.value = ''
   try {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.value}`)
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id.value}`)
     if (!res.ok) throw new Error('No encontrado')
     pokemon.value = await res.json()
   } catch (e) {
