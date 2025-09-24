@@ -47,6 +47,11 @@
           <span class="nav-icon">💾</span>
           <span class="nav-text">Respaldos</span>
         </RouterLink>
+        
+        <RouterLink to="/pokemon" class="nav-link" :class="{ active: $route.name === 'pokemon' }">
+          <span class="nav-icon">🔴</span>
+          <span class="nav-text">Pokémon</span>
+        </RouterLink>
       </div>
       
       <div class="nav-actions">
