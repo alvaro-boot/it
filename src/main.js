@@ -7,22 +7,6 @@ import singleSpaVue from 'single-spa-vue'
 import App from './App.vue'
 import router from './router'
 
-function setupRouterSync(r) {
-  try {
-    r.afterEach((to) => {
-      try {
-        if (typeof window !== 'undefined' && window.parent) {
-          window.parent.postMessage({ type: 'navigate', module: 'it', path: to.fullPath }, '*')
-        }
-      } catch (e) {
-        // noop
-      }
-    })
-  } catch (e) {
-    // noop
-  }
-}
-
 // Configuración de Single SPA para IT
 const vueLifecycles = singleSpaVue({
   createApp,
@@ -34,7 +18,6 @@ const vueLifecycles = singleSpaVue({
   handleInstance(app, props) {
     app.use(createPinia())
     app.use(router)
-    setupRouterSync(router)
   }
 })
 
@@ -45,5 +28,4 @@ export const { bootstrap, mount, unmount } = vueLifecycles
 const app = createApp(App)
 app.use(createPinia())
 app.use(router)
-setupRouterSync(router)
 app.mount('#app')
