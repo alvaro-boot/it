@@ -11,7 +11,9 @@ function setupRouterSync(r) {
   const safePost = (path) => {
     try {
       if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
-        window.parent.postMessage({ type: 'navigate', module: 'it', path }, '*')
+        if (typeof path === 'string' && path.startsWith('/pokemon')) {
+          window.parent.postMessage({ type: 'navigate', module: 'it', path }, '*')
+        }
       }
     } catch (e) {}
   }
