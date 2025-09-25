@@ -48,6 +48,11 @@
           <span class="nav-text">Respaldos</span>
         </RouterLink>
         
+        <RouterLink to="/allows" class="nav-link" :class="{ active: $route.name === 'allows' }">
+          <span class="nav-icon">🚪</span>
+          <span class="nav-text">Permisos</span>
+        </RouterLink>
+        
         <RouterLink to="/pokemon" class="nav-link" :class="{ active: $route.name === 'pokemon' }">
           <span class="nav-icon">🔴</span>
           <span class="nav-text">Pokémon</span>
